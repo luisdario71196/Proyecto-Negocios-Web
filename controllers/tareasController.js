@@ -12,6 +12,8 @@ exports.agregarTarea = async (req, res, next) => {
 
     // Leer el valor del input de la tarea mediante destructuring
     const { tarea } = req.body;
+
+    // Leer los nuevos valores de la tabla Tareas mediante el destructuring
     const { descripcion } = req.body;
     const { fechaInicio } = req.body;
     const { fechaFinal } = req.body;
