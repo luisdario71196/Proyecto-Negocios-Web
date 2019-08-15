@@ -1,0 +1,15 @@
+extends ./layout
+
+//- https://pugjs.org/language/mixins.html
+include mixins/crearProyecto
+
+block contenido
+    .contenido-principal
+        h1 #{nombrePagina}
+
+        //- Si hay errores en la validación del formulario
+        if errores
+            each error in errores
+                .alerta.error #{error.texto}
+
+        +crearProyecto(proyecto)
