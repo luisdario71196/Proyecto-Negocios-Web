@@ -12,6 +12,8 @@ const Tarea = db.define('tarea', {
         autoIncrement: true
     },
     tarea: Sequelize.STRING,
+
+    // Nuevos campos agregados
     descripcion: Sequelize.STRING,
     fechaInicio: Sequelize.DATE,
     fechaFinal: Sequelize.DATE,
