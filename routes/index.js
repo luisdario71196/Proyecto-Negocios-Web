@@ -62,13 +62,12 @@ module.exports = function() {
     /**-------------------------------------------------- */ 
     // Actualizar el contenido de una tarea
     
-    router.get('/tarea/editarTarea/id',
+    router.get('/tarea/editarTarea/:id',
         authController.usuarioAutenticado,
         tareasController.formularioEditarTarea
     );
 
     router.post('/editar_tarea/:id',
-        
         authController.usuarioAutenticado,
         body('tarea').not().isEmpty().trim().escape(),
         body('descripcion').not().isEmpty().trim().escape(),

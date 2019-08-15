@@ -48,11 +48,7 @@ exports.agregarTarea = async (req, res, next) => {
 // Actualizar los datos de las tareas
 exports.actualizarTarea= async(req, res)=> {
 
-    const proyecto = await Proyecto.findOne({
-        where: {
-            url: req.params.url
-        }
-    });
+   
 
     const { tarea } = req.body;
     const { descripcion } = req.body;
@@ -89,10 +85,11 @@ exports.actualizarTarea= async(req, res)=> {
 /**------------------------------------------------------------- */
 exports.formularioEditarTarea = async (req, res) => {
     
+    
     // Obtener todos los proyectos del usuario actual
-    const tareasPromesi = await Tarea.findOne({
+    const tareasPromesi = await Proyecto.findAll({
         where: {
-            id: id
+            id : req.params.id
         }
     });
 
