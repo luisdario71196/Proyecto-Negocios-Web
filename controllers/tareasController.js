@@ -11,15 +11,21 @@ exports.agregarTarea = async (req, res, next) => {
     });
 
     // Leer el valor del input de la tarea mediante destructuring
-    const {tarea} = req.body;
-
+    const { tarea } = req.body;
+    const { descripcion } = req.body;
+ 
     // Mapear los valores del modelo para almacenarlos
     const estado = 0;
+    const fechaInicio = Date();
+    const fechaFinal = Date();
     const proyectoId = proyecto.id;
 
     // Insertando en la base de datos y redireccionando
     const resultado = await Tarea.create({
         tarea,
+        descripcion,
+        fechaInicio,
+        fechaFinal,
         estado,
         proyectoId
     });
