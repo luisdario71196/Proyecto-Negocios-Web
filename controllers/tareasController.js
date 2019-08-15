@@ -3,6 +3,7 @@ const Proyecto = require('../models/Proyecto');
 const Tarea = require('../models/Tarea');
 
 exports.agregarTarea = async (req, res, next) => {
+    
     // Obtenemos el proyecto actual mediante la URL
     const proyecto = await Proyecto.findOne({
         where : {
@@ -45,7 +46,7 @@ exports.agregarTarea = async (req, res, next) => {
 
 /**------------------------------------------------------------- */
 // Actualizar los datos de las tareas
-exports.editarTarea = async(req, res)=> {
+exports.actualizarTarea= async(req, res)=> {
 
     const proyecto = await Proyecto.findOne({
         where: {
@@ -86,6 +87,29 @@ exports.editarTarea = async(req, res)=> {
 
 };
 /**------------------------------------------------------------- */
+exports.formularioEditarTarea = async (req, res) => {
+    
+    // Obtener todos los proyectos del usuario actual
+    const tareasPromesi = await Tarea.findOne({
+        where: {
+            id: id
+        }
+    });
+
+    const tareaPromise = Tarea.findOne({
+        where: {
+            id:req.params.id
+        }
+    });
+    
+    const [tareas, tarea] = await Promise.all([tareasPromesi, tareaPromise]);
+    res.render('editarTarea', {
+        nombrePagina: 'Editar Tarea',
+        tareas,
+        tarea
+    })
+};
+
 
 exports.actualizarEstadoTarea = async (req, res, next) => {
     // Obtener el id de la tarea

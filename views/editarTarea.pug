@@ -1,6 +1,15 @@
-mixin editarTarea(tareas = {})
-    pre #{vardum(tareas)}
-    form.agregar-tarea(action=`/editar_tarea/${proyecto.url}` method="POST")
+extends ./layout
+
+include mixins/editarTarea
+
+block  contenido
+    .contenido-principal
+        h1 #{nombrePagina}
+        if errores 
+            each error in errores   
+                .alerta.error #{error.texto}
+        
+        form(action=`/editar_tarea/${proyecto.id]} ` method="POST")
             .campo
                 label(for="tarea") Tarea:
                 input(type="text" name="tarea" placeholder="Nombre de la tarea")
@@ -14,4 +23,5 @@ mixin editarTarea(tareas = {})
                 input(type="date", name="fechaFinal")
             .campo-enviar
                 input(type="submit" value="Guardar" class="boton")
-    
+                
+            
