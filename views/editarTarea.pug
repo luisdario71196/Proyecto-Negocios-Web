@@ -1,14 +1,11 @@
 extends layout
 
 block contenido
-.contenido-principal
-        h1 #{nombrePagina}
-        pre #{vardump(proyecto)}
-        if errores 
-            each error in errores   
-                .alerta.error #{error.texto}
-        
-        form(action=`/editar_tarea/${proyecto.id}` method="POST")
+    .contenido-principal
+        h1 #{nombrePagina} 
+        pre #{vardump(tarea)}
+
+        form.agregar-tarea(action=`/editar_tarea/` method="POST")
             .campo
                 label(for="tarea") Tarea:
                 input(type="text" name="tarea" placeholder="Nombre de la tarea")
@@ -22,5 +19,4 @@ block contenido
                 input(type="date", name="fechaFinal")
             .campo-enviar
                 input(type="submit" value="Guardar" class="boton")
-                
             
