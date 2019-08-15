@@ -24,13 +24,11 @@ block contenido
             ul
                 if tareas.length
                     each tarea in tareas
+                    
                         li.tarea(data-tarea=tarea.id)
                             p #{tarea.tarea}
-                            br
                             p #{tarea.descripcion}
-                            br
                             p #{tarea.fechaInicio}
-                            br
                             p #{tarea.fechaFinal}
                             .acciones
                                 if tarea.estado
@@ -38,6 +36,8 @@ block contenido
                                 else
                                     i.far.fa-check-circle
                                 i.fas.fa-trash
+                                i
+                                    a(href=`/tareas/editarTarea/${proyecto.id}`).fas.fa-edit
                 else
                     p Este proyecto aún no tiene tareas definidas.
 

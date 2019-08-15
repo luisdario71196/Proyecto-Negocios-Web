@@ -43,6 +43,50 @@ exports.agregarTarea = async (req, res, next) => {
     res.send('Enviado');
 }
 
+/**------------------------------------------------------------- */
+// Actualizar los datos de las tareas
+exports.editarTarea = async(req, res)=> {
+
+    const proyecto = await Proyecto.findOne({
+        where: {
+            url: req.params.url
+        }
+    });
+
+    const { tarea } = req.body;
+    const { descripcion } = req.body;
+    const { fechaInicio } = req.body;
+    const { fechaFinal } = req.body;
+    let errores = [];
+
+    if (!tareas) {
+        errores.push({ 'texto': 'Las tareas no pueden ser vacias' });
+
+    }
+    if (errores.length > 0) {
+        res.render('editarTarea', {
+            nombrePagina: 'Editar Tarea',
+            proyecto,
+            errores
+        });
+    } else {
+        await Tarea.update(
+            { tarea },
+            { descripcion },
+            { fechaInicio },
+            { fechaFinal },
+            {where: {
+                id: req.params.id  
+            }}
+        );
+
+        res.redirect(`/proyectos/${req.params.url}`);
+    }
+
+
+};
+/**------------------------------------------------------------- */
+
 exports.actualizarEstadoTarea = async (req, res, next) => {
     // Obtener el id de la tarea
     // Patch solamente obtiene valores a través de req.params y no de req.query

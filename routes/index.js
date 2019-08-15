@@ -58,6 +58,28 @@ module.exports = function() {
         tareasController.agregarTarea
     );
 
+
+    /**-------------------------------------------------- */ 
+    // Actualizar el contenido de una tarea
+    
+    router.get('/tareas/editarTarea/id',
+        authController.usuarioAutenticado,
+        tareasController.editarTarea
+    );
+
+    router.post('/editar_tarea/:id',
+        
+        authController.usuarioAutenticado,
+        body('tarea').not().isEmpty().trim().escape(),
+        body('descripcion').not().isEmpty().trim().escape(),
+        body('fechaInicio').not().isEmpty().trim().escape(),
+        body('fechaFinal').not().isEmpty().trim().escape(),
+        tareasController.editarTarea
+
+    );
+/**-------------------------------------------------- */
+
+
     // Actualizar el estado de una tarea
     router.patch('/tarea/:id', tareasController.actualizarEstadoTarea);
 
