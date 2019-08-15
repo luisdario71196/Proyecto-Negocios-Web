@@ -11,7 +11,10 @@ const Tarea = db.define('tarea', {
         primaryKey: true,
         autoIncrement: true
     },
-    tarea : Sequelize.STRING,
+    tarea: Sequelize.STRING,
+    descripcion: Sequelize.STRING,
+    fechaInicio: Sequelize.DATE,
+    fechaFinal: Sequelize.DATE,
     estado : Sequelize.INTEGER(1)
 });
 Tarea.belongsTo(Proyecto);

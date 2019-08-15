@@ -2,7 +2,7 @@
 const Sequelize = require('sequelize');
 
 // Establecer los parámetros de conexión a la Base de Datos
-const db = new Sequelize('uptask', 'node', 'node$2019', {
+const db = new Sequelize('uptask', 'NegociosWeb', 'brtNUgGZg9c6TSm', {
     host : 'localhost',
     dialect : 'mysql',
     port : '3306',
