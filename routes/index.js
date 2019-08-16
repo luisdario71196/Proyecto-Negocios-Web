@@ -70,9 +70,9 @@ module.exports = function() {
     router.post('/editar_tarea/:id',
         proyectosController.proyectoPorUrl,
         body('tarea').not().isEmpty().trim().escape(),
-        body('descripcion').isEmpty().trim().escape(),
-        body('fechaInicio').isEmpty(),
-        body('fechaFinal').isEmpty(),
+        body('descripcion').not().isEmpty().trim().escape(),
+        body('fechaInicio').not().isEmpty().trim().escape(),
+        body('fechaFinal').not().isEmpty().trim().escape(),
         tareasController.actualizarTarea
 
     );
