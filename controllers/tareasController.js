@@ -82,7 +82,7 @@ exports.actualizarTarea = async (req, res) => {
             }}
         );
 
-        res.redirect('/');
+        res.redirect(`/proyectos/${req.params.url}`);
     }
 
     

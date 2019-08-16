@@ -68,7 +68,7 @@ module.exports = function() {
     );
 
     router.post('/editar_tarea/:id',
-        // proyectosController.proyectoPorUrl,
+        proyectosController.proyectoPorUrl,
         body('tarea').not().isEmpty().trim().escape(),
         body('descripcion').not().isEmpty().trim().escape(),
         body('fechaInicio').not().isEmpty().trim().escape(),
