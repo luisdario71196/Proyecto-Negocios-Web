@@ -5,10 +5,10 @@ import Swal from "sweetalert2";
 
 export const tareasRetrasadas = () => {
 
-    if (tareasRetrasadas.length) {
+    if (tareas.length) {
 
         // seleccionar el elemento
-        const tareaRetrasada = document.querySelectorAll('i.atrasado');
+        const tareaRetrasada = document.querySelectorAll('li.tarea');
         
         // detectar el valores
         const fechaInicial = document.getElementById('fechaInicial').innerHTML;
@@ -20,13 +20,13 @@ export const tareasRetrasadas = () => {
         if(fechaInicial > fechaFinal)
         {
             mostrarAdvettencia
-            
+
         } else {
             
             return 0;
         }
 
-        if (mostrarAvertencia > fechaFinal) {
+        if (mostrarAvertencia > tareaRetrasada.values) {
 
             Swal.fire(
                 'warning',
