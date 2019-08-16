@@ -91,11 +91,6 @@ exports.actualizarTarea = async (req, res) => {
 
         res.redirect('/');
     }
-
-
-    
-
-
 };
 
 

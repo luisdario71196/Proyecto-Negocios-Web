@@ -6,32 +6,32 @@ const Usuario = require('../models/Usuario');
 
 
 // Create a length password policy
-var lengthPolicy = new PasswordPolicy({ length: { minLength: 6 } });
+const lengthPolicy = new PasswordPolicy({ length: { minLength: 8 } });
 
 // will throw as the password does not meet criteria
-lengthPolicy.assert('hello');
+lengthPolicy.assert('hola123');
 
 // returns false if password does not meet rules
-assert.equal(false, lengthPolicy.check('hello'));
+assert.equal(false, lengthPolicy.check('hello123'));
 
 // explains the policy
-var explained = lengthPolicy.explain();
+const explained = lengthPolicy.explain();
 
 assert.equal(1, explained.length);
 
 // easier i18n
-assert.equal('lengthAtLeast', explained[0].code);
-assert.equal('At least 6 characters in length',
-    format(explained[0].message, explained[0].format));
+assert.equal(`/crear_cuenta/${Usuario.password}`, explained[0].code);
+assert.equal('Tu contraseña debe tener 8 caracteres de longiutd', format(explained[0].message, explained[0].format));
 
 
 FooRule.prototype.explain = function (options) {
     return {
-    
 
-        code: 'foo',
-        message: 'Foo should be present at least %d times.',
+        code:  `/crear_cuenta/${Usuario.password}`,
+        message: 'Tu contraseña no cumple con los siguentes parametros',
         format: [options.count]
     };
 };
+
+module.exports =  PasswordPolicy;
 
