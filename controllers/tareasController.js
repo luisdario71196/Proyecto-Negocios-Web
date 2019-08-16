@@ -52,12 +52,14 @@ exports.actualizarTarea = async (req, res) => {
     
     // Obtener todos los proyectos del usuario actual
     const usuarioId = res.locals.usuario.id
-    const proyecto = await Proyecto.findAll({
+    const proyecto = await Proyecto.findOne({
         where: {
             
-            usuarioId : usuarioId
+            url: req.params.url
         }
     });
+
+    const proyectoId = proyecto.id;
     const { tarea } = req.body;
     const { descripcion } = req.body;
     const { fechaInicio } = req.body;
@@ -71,7 +73,7 @@ exports.actualizarTarea = async (req, res) => {
     if (errores.length > 0) {
         res.render('editarTarea', {
             nombrePagina: 'Editar Tarea',
-            proyecto,
+            proyectoId,
             errores
         });
     } else {
@@ -108,13 +110,16 @@ exports.formularioEditarTarea = async (req, res) => {
         }
     });
 
+    const proyectoId = tareasPromesi.id;
+
+
     const tareaPromise = Tarea.findOne({
         where: {
             id: req.params.id
         }
     });
 
-    const [tareas, tarea] = await Promise.all([tareasPromesi, tareaPromise]);
+    const [tareas, tarea] = await Promise.all([proyectoId, tareaPromise]);
     res.render('editarTarea', {
         nombrePagina: 'Editar Tarea',
         tareas,
