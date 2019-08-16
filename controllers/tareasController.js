@@ -70,6 +70,7 @@ exports.actualizarTarea = async (req, res) => {
         errores.push({ 'texto': 'Las tareas no pueden ser vacias' });
 
     }
+  
     if (errores.length > 0) {
         res.render('editarTarea', {
             nombrePagina: 'Editar Tarea',

@@ -13,15 +13,15 @@ block contenido
         form.agregar-tarea(action=`/editar_tarea` method="POST")
             .campo
                 label(for="tarea") Tarea:
-                input(value = tarea type="text" name="tarea" placeholder="Nombre de la tarea")
+                input(value = tarea.tarea type="text" name="tarea" placeholder="Nombre de la tarea")
             .campo    
                 labe(for="descripcion") Descripción:
-                input(value = descripcion  type="text" name="descripcion" placeholder="Descripción de la tarea")
+                input(value = tarea.descripcion  type="text" name="descripcion" placeholder="Descripción de la tarea")
             .campo
                 label(for="fechaInicio") Fecha de inicio:
-                input(value = fechaInical type="date" name="fechaInicio")
+                input(value = tarea.fechaInical type="date" name="fechaInicio")
                 label(for="fechaFinal") Fecha de finalización:
-                input(value = tareaFinal type="date", name="fechaFinal")
+                input(value = tarea.tareaFinal type="date", name="fechaFinal")
             .campo-enviar
                 input(type="submit" value = "Guardar"  class="boton" ht) 
                     
