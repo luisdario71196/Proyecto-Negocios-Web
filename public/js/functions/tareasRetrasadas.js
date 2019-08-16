@@ -20,19 +20,15 @@ export const tareasRetrasadas = () => {
         if(fechaInicial > fechaFinal)
         {
             mostrarAdvettencia
-
-        } else {
-            
-            return 0;
-        }
-
-        if (mostrarAvertencia > tareaRetrasada.values) {
-
             Swal.fire(
                 'warning',
                 'Tarea retrasada',
                 'Esta tarea no se ha terminado'
             )
+
+        } else {
+            
+            return 0;
         }
 
 
