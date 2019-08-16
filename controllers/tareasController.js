@@ -46,42 +46,52 @@ exports.agregarTarea = async (req, res, next) => {
 
 /**------------------------------------------------------------- */
 // Actualizar los datos de las tareas
-exports.actualizarTarea= async(req, res)=> {
+exports.actualizarTarea = async (req, res) => {
+    
+    // Obtener todos los proyectos del usuario actual
+    const usuarioId = res.locals.usuario.id;
+    const proyectos = await Proyecto.findAll({
+        where: {
+            usuarioId: usuarioId
+        }
+    });
 
-   
-
-    const { tarea } = req.body;
-    const { descripcion } = req.body;
-    const { fechaInicio } = req.body;
-    const { fechaFinal } = req.body;
+    const { tareaEditar } = req.body;
+    const { descripcionEditar } = req.body;
+    const { fechaInicioEditar } = req.body;
+    const { fechaFinalEditar } = req.body;
     let errores = [];
 
-    if (!tareas) {
+    if (!tarea) {
         errores.push({ 'texto': 'Las tareas no pueden ser vacias' });
 
     }
     if (errores.length > 0) {
         res.render('editarTarea', {
             nombrePagina: 'Editar Tarea',
-            proyecto,
+            proyectos,
             errores
         });
     } else {
         await Tarea.update(
-            { tarea },
-            { descripcion },
-            { fechaInicio },
-            { fechaFinal },
+            { tareaEditar },
+            { descripcionEditar },
+            { fechaInicioEditar },
+            { fechaFinalEditar },
             {where: {
                 id: req.params.id  
             }}
         );
 
-        res.redirect(`/proyectos/${req.params.url}`);
+        res.redirect('/');
     }
+
+    
 
 
 };
+
+
 /**------------------------------------------------------------- */
 exports.formularioEditarTarea = async (req, res) => {
     

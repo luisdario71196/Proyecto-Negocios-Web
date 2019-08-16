@@ -2,21 +2,25 @@ extends layout
 
 block contenido
     .contenido-principal
-        h1 #{nombrePagina} 
-        pre #{vardump(tarea)}
 
-        form.agregar-tarea(action=`/editar_tarea/` method="POST")
+        h1 #{nombrePagina} 
+        if errores 
+            each error in errores   
+                .alerta.error #{error.texto}
+        re #{vardump(tarea)}
+                
+        form.agregar-tarea(action=`/editar_tarea` method="POST")
             .campo
-                label(for="tarea") Tarea:
+                label(for="tareaEditar") Tarea:
                 input(type="text" name="tarea" placeholder="Nombre de la tarea")
             .campo    
-                labe(for="descripcion") Descripción:
+                labe(for="descripcionEditar") Descripción:
                 input(type="text" name="descripcion" placeholder="Descripción de la tarea")
             .campo
-                label(for="fechaInicio") Fecha de inicio:
+                label(for="fechaInicioEditar") Fecha de inicio:
                 input(type="date", name="fechaInicio")
-                label(for="fechaFinal") Fecha de finalización:
+                label(for="fechaFinalEditar") Fecha de finalización:
                 input(type="date", name="fechaFinal")
             .campo-enviar
                 input(type="submit" value="Guardar" class="boton")
-            
+                    
