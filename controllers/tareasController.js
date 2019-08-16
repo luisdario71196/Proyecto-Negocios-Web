@@ -44,15 +44,18 @@ exports.agregarTarea = async (req, res, next) => {
     res.send('Enviado');
 }
 
-/**------------------------------------------------------------- */
+
+
+//------------------------------------------------------------------------------
 // Actualizar los datos de las tareas
 exports.actualizarTarea = async (req, res) => {
     
     // Obtener todos los proyectos del usuario actual
-    // const usuarioId = res.locals.usuario.id;
+    const usuarioId = res.locals.usuario.id
     const proyecto = await Proyecto.findAll({
         where: {
-            url: req.params.url
+            
+            usuarioId : usuarioId
         }
     });
     const { tarea } = req.body;
@@ -76,14 +79,17 @@ exports.actualizarTarea = async (req, res) => {
             { tarea },
             { descripcion },
             { fechaInicio },
-            { fechaFinal},
-            { where: {
-                id: req.params.id  
-            }}
+            { fechaFinal },
+            {
+                where: {
+                    id: req.params.id
+                }
+            }
         );
 
         res.redirect('/');
     }
+
 
     
 
@@ -91,23 +97,23 @@ exports.actualizarTarea = async (req, res) => {
 };
 
 
-/**------------------------------------------------------------- */
 exports.formularioEditarTarea = async (req, res) => {
     
     
     // Obtener todos los proyectos del usuario actual
+    const usuarioId = res.locals.usuario.id;
     const tareasPromesi = await Proyecto.findAll({
         where: {
-            url: req.params.url
+            usuarioId : usuarioId
         }
     });
 
     const tareaPromise = Tarea.findOne({
         where: {
-            id:req.params.id
+            id: req.params.id
         }
     });
-    
+
     const [tareas, tarea] = await Promise.all([tareasPromesi, tareaPromise]);
     res.render('editarTarea', {
         nombrePagina: 'Editar Tarea',
@@ -115,6 +121,14 @@ exports.formularioEditarTarea = async (req, res) => {
         tarea
     });
 };
+
+
+
+// -----------------------------------------------------------------------------------------
+
+
+
+
 
 
 exports.actualizarEstadoTarea = async (req, res, next) => {

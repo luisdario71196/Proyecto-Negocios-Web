@@ -63,12 +63,12 @@ module.exports = function() {
     // Actualizar el contenido de una tarea
     
     router.get('/tarea/editarTarea/:id',
-        // authController.usuarioAutenticado,
+        authController.usuarioAutenticado,
         tareasController.formularioEditarTarea
     );
 
     router.post('/editar_tarea/:id',
-        // proyectosController.proyectosHome,
+        proyectosController.proyectoPorUrl,
         body('tarea').not().isEmpty().trim().escape(),
         body('descripcion').isEmpty().trim().escape(),
         body('fechaInicio').isEmpty(),

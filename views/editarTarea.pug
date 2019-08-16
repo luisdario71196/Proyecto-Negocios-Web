@@ -1,4 +1,5 @@
-extends layout
+extends ./layout
+
 
 block contenido
     .contenido-principal
@@ -9,7 +10,7 @@ block contenido
                 .alerta.error #{error.texto}
         pre #{vardump(tarea)}
                 
-        form.agregar-tarea(action=`/editar_tarea/${proyecto.id}` method="POST")
+        form.agregar-tarea(action=`/editar_tarea` method="POST")
             .campo
                 label(for="tarea") Tarea:
                 input( value = tarea.tarea type="text" name="tarea" placeholder="Nombre de la tarea")
