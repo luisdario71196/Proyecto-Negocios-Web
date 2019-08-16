@@ -8,21 +8,23 @@ block contenido
         if errores 
             each error in errores   
                 .alerta.error #{error.texto}
-        pre #{vardump(tareas)}
+        if (tareas)
+            each tarea in tareas
                 
-        form.agregar-tarea(action=`/editar_tarea` method="POST")
-            .campo
-                label(for="tarea") Tarea:
-                input(value = tarea type="text" name="tarea" placeholder="Nombre de la tarea")
-            .campo    
-                labe(for="descripcion") Descripción:
-                input(value = tarea  type="text" name="descripcion" placeholder="Descripción de la tarea")
-            .campo
-                label(for="fechaInicio") Fecha de inicio:
-                input(value = tarea type="date", name="fechaInicio")
-                label(for="fechaFinal") Fecha de finalización:
-                input(value = tarea type=
-                "date", name="fechaFinal")
-            .campo-enviar
-                input(type="submit" value = `${tareas.tarea ? 'Guardar': 'Guardar'}` class="boton" ht) 
+                pre #{vardump(tarea)}
+                        
+                form.agregar-tarea(action=`/editar_tarea` method="POST")
+                    .campo
+                        label(for="tarea") Tarea:
+                        input(value = tarea.tarea type="text" name="tarea" placeholder="Nombre de la tarea")
+                    .campo    
+                        labe(for="descripcion") Descripción:
+                        input(value = tarea.descripcion  type="text" name="descripcion" placeholder="Descripción de la tarea")
+                    .campo
+                        label(for="fechaInicio") Fecha de inicio:
+                        input(value = tarea.fechaInicio type="date" name="fechaInicio")
+                        label(for="fechaFinal") Fecha de finalización:
+                        input(value = tarea.fechaFinal type="date", name="fechaFinal")
+                    .campo-enviar
+                        input(type="submit" value = "Guardar"  class="boton" ht) 
                     
