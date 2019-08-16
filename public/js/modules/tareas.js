@@ -74,6 +74,32 @@ if (tareas){
                 }
             })
         }
+
+        // validar las tareas retrasadas segun su fecha
+        if (e.target.classList.contains('fa-exclamation-circle')) {
+
+            const tareaHTML = e.target.parentElement.parentElement;
+            // Obtener el id de la tarea
+            const idTarea = tareaHTML.dataset.tarea;
+
+            Swal.fire({
+
+                type: 'warning',
+                title: 'Tarea retrasada',
+                text: 'Esta tarea no se ha terminado'
+
+            })
+
+            
+        }
+            
+            
+        
+
+        
+
+        
+
     });
 }
 

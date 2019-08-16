@@ -50,26 +50,25 @@ exports.actualizarTarea = async (req, res) => {
     
     // Obtener todos los proyectos del usuario actual
     const usuarioId = res.locals.usuario.id;
-    const proyectos = await Proyecto.findAll({
+    const proyecto = await Proyecto.findOne({
         where: {
-            usuarioId: usuarioId
+            url: req.params.url
         }
     });
-
     const { tareaEditar } = req.body;
     const { descripcionEditar } = req.body;
     const { fechaInicioEditar } = req.body;
     const { fechaFinalEditar } = req.body;
     let errores = [];
 
-    if (!tarea) {
+    if (!tareas) {
         errores.push({ 'texto': 'Las tareas no pueden ser vacias' });
 
     }
     if (errores.length > 0) {
         res.render('editarTarea', {
             nombrePagina: 'Editar Tarea',
-            proyectos,
+            tareas,
             errores
         });
     } else {

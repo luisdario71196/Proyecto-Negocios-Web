@@ -235,6 +235,9 @@ body.index {
 .completo {
     color: #00B762;
 }
+.atrasado{
+    color: #C72E0D;
+}
 .alerta {
     padding: .5rem;
     text-align: center;

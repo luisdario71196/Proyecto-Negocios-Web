@@ -36,6 +36,11 @@ block contenido
                                 else
                                     i.far.fa-check-circle
                                 i.fas.fa-trash
+
+                                if tarea.fechaFinal
+                                    i.fas.fa-exclamation-circle.atrasado
+                                else
+                                    i.fas.fa-exclamation-circle
                                 i
                                     a(href=`/tarea/editarTarea/${proyecto.id}`).fas.fa-edit
                 else
