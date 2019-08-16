@@ -17,6 +17,8 @@ const cookieParser = require('cookie-parser');
 // Importar passport para permitir el inicio de sesión en el sitio
 const passport = require('./config/passport');
 
+
+
 // Crear la conexión con la Base de Datos
 const db = require('./config/db');
 
@@ -53,10 +55,15 @@ app.use(flash());
 // https://www.npmjs.com/package/cookie-parser
 app.use(cookieParser());
 
+
+
 // Habilitar las sesiones
 // Las sesiones le permiten al usuario navegar entre distintas
 // páginas sin necesidad de volver a autenticarse
-// https://www.npmjs.com/package/express-session
+// https://www.npmjs.com/package/express-sessio
+
+
+
 app.use(session({
     secret : 'unultrasecreto',
     resave : false,

@@ -49,40 +49,40 @@ exports.agregarTarea = async (req, res, next) => {
 exports.actualizarTarea = async (req, res) => {
     
     // Obtener todos los proyectos del usuario actual
-    const usuarioId = res.locals.usuario.id;
-    const proyecto = await Proyecto.findOne({
+    // const usuarioId = res.locals.usuario.id;
+    const proyecto = await Proyecto.findAll({
         where: {
             url: req.params.url
         }
     });
-    const { tareaEditar } = req.body;
-    const { descripcionEditar } = req.body;
-    const { fechaInicioEditar } = req.body;
-    const { fechaFinalEditar } = req.body;
+    const { tarea } = req.body;
+    const { descripcion } = req.body;
+    const { fechaInicio } = req.body;
+    const { fechaFinal } = req.body;
     let errores = [];
 
-    if (!tareas) {
+    if (!tarea) {
         errores.push({ 'texto': 'Las tareas no pueden ser vacias' });
 
     }
     if (errores.length > 0) {
         res.render('editarTarea', {
             nombrePagina: 'Editar Tarea',
-            tareas,
+            proyecto,
             errores
         });
     } else {
         await Tarea.update(
-            { tareaEditar },
-            { descripcionEditar },
-            { fechaInicioEditar },
-            { fechaFinalEditar },
-            {where: {
+            { tarea },
+            { descripcion },
+            { fechaInicio },
+            { fechaFinal},
+            { where: {
                 id: req.params.id  
             }}
         );
 
-        res.redirect(`/proyectos/${req.params.url}`);
+        res.redirect('/');
     }
 
     
@@ -98,7 +98,7 @@ exports.formularioEditarTarea = async (req, res) => {
     // Obtener todos los proyectos del usuario actual
     const tareasPromesi = await Proyecto.findAll({
         where: {
-            id : req.params.id
+            url: req.params.url
         }
     });
 
@@ -113,7 +113,7 @@ exports.formularioEditarTarea = async (req, res) => {
         nombrePagina: 'Editar Tarea',
         tareas,
         tarea
-    })
+    });
 };
 
 

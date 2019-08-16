@@ -3,6 +3,8 @@ const Sequelize = require('sequelize');
 const db = require('../config/db');
 const Proyecto = require('./Proyecto');
 const bcrypt = require('bcrypt-nodejs');
+const charsets = require('password-sheriff').charsets;
+
 
 // Definir el modelo Usuario
 const Usuario = db.define('usuario', {
@@ -42,9 +44,12 @@ const Usuario = db.define('usuario', {
 {
     hooks : {
         beforeCreate(usuario) {
+
+
             // Realizar el hash del password
             // https://www.npmjs.com/package/bcrypt
             usuario.password = bcrypt.hashSync(usuario.password, bcrypt.genSaltSync(10));
+        
         }
     }
 });

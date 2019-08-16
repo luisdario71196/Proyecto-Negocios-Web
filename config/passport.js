@@ -39,6 +39,7 @@ passport.use(
     )
 );
 
+
 // Permite a passport leer los valores del objeto
 // Serializar el usuario
 passport.serializeUser((usuario, callback) => {
@@ -52,3 +53,4 @@ passport.deserializeUser((usuario, callback) => {
 
 // Exportar
 module.exports = passport;
+

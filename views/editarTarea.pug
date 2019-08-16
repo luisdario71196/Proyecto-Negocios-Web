@@ -7,20 +7,20 @@ block contenido
         if errores 
             each error in errores   
                 .alerta.error #{error.texto}
-        re #{vardump(tarea)}
+        pre #{vardump(tarea)}
                 
-        form.agregar-tarea(action=`/editar_tarea` method="POST")
+        form.agregar-tarea(action=`/editar_tarea/${proyecto.id}` method="POST")
             .campo
-                label(for="tareaEditar") Tarea:
-                input(type="text" name="tarea" placeholder="Nombre de la tarea")
+                label(for="tarea") Tarea:
+                input( value = tarea.tarea type="text" name="tarea" placeholder="Nombre de la tarea")
             .campo    
-                labe(for="descripcionEditar") Descripción:
-                input(type="text" name="descripcion" placeholder="Descripción de la tarea")
+                labe(for="descripcion") Descripción:
+                input(value = tarea.descripcion type="text" name="descripcion" placeholder="Descripción de la tarea")
             .campo
-                label(for="fechaInicioEditar") Fecha de inicio:
-                input(type="date", name="fechaInicio")
-                label(for="fechaFinalEditar") Fecha de finalización:
-                input(type="date", name="fechaFinal")
+                label(for="fechaInicio") Fecha de inicio:
+                input(value = tarea.fechaInicio type="date", name="fechaInicio")
+                label(for="fechaFinal") Fecha de finalización:
+                input(value = tarea.fechaFinal type="date", name="fechaFinal")
             .campo-enviar
-                input(type="submit" value="Guardar" class="boton")
+                input(type="submit" value = `${tarea.tarea, tarea.descripcion, tarea.fechaInicio, tarea,FechaFinal ? 'Guardar': 'Guardar'}` class="boton")
                     
